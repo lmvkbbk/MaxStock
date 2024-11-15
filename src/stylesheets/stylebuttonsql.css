@@ -1,0 +1,100 @@
+.BotaoAdicionar {
+    -fx-background-color: #5FDE85;
+    -fx-text-fill: black;
+    -fx-font-family: 'Arial';
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #47A463;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 0, 4);
+}
+
+.BotaoAdicionar:hover {
+    -fx-background-color: #47A463;
+    -fx-border-color: #2D693F;
+}
+
+.BotaoAdicionar:pressed {
+    -fx-background-color: #2D693F;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+    -fx-effect: none;
+}
+
+.BotaoRemover {
+    -fx-background-color: #DC3625;
+    -fx-text-fill: black;
+    -fx-font-family: 'Arial';
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #BE3020;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 0, 4);
+}
+
+.BotaoRemover:hover {
+    -fx-background-color: #BE3020;
+    -fx-border-color: #A1291B;
+}
+
+.BotaoRemover:pressed {
+    -fx-background-color: #A1291B;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+    -fx-effect: none;
+}
+
+.BotaoPesquisa {
+    -fx-background-color: #E2E2E2;
+    -fx-text-fill: black;
+    -fx-font-family: 'Arial';
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #C5C5C5;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 0, 4);
+}
+
+.BotaoPesquisa:hover {
+    -fx-background-color: #C5C5C5;
+    -fx-border-color: #A8A8A8;
+}
+
+.BotaoPesquisa:pressed {
+    -fx-background-color: #A8A8A8;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+    -fx-effect: none;
+}
+
+.BotaoAlterar {
+    -fx-background-color: #FB7C42;
+    -fx-text-fill: black;
+    -fx-font-family: 'Arial';
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #DD6D39;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 0, 4);
+}
+
+.BotaoAlterar:hover {
+    -fx-background-color: #DD6D39;
+    -fx-border-color: #C05F32;
+}
+
+.BotaoAlterar:pressed {
+    -fx-background-color: #C05F32;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+    -fx-effect: none;
+}
+

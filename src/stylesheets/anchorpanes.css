@@ -1,0 +1,8 @@
+.anchor_pane {
+    -fx-border-color: #2D3D74;
+    -fx-background-color: #384B91;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+    -fx-border-width: 4;
+}
+
