@@ -107,7 +107,7 @@
             <children>
                 <AnchorPane fx:id="CenaPrincipalCliente" prefHeight="200.0" prefWidth="200.0">
                     <children>
-                        <TableView fx:id="TabelaSQLCliente" layoutX="36.0" layoutY="79.0" prefHeight="560.0" prefWidth="962.0" style="-fx-background-color: White; -fx-background-radius: 15; -fx-border-color: #384B91; -fx-border-width: 10; -fx-border-radius: 15;">
+                        <TableView fx:id="TabelaSQLCliente" layoutX="36.0" layoutY="79.0" prefHeight="560.0" prefWidth="962.0" style="-fx-background-color: White; -fx-border-color: #384B91; -fx-border-width: 2;">
                             <rotationAxis>
                                 <Point3D />
                             </rotationAxis>
@@ -137,7 +137,7 @@
                 </AnchorPane>
                 <AnchorPane fx:id="CenaPrincipalProduto" prefHeight="200.0" prefWidth="200.0">
                     <children>
-                        <TableView fx:id="tabelaSQLProduto" layoutX="37.0" layoutY="79.0" prefHeight="560.0" prefWidth="962.0" style="-fx-background-color: white; -fx-border-color: #384B91; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-width: 10;">
+                        <TableView fx:id="tabelaSQLProduto" layoutX="37.0" layoutY="79.0" prefHeight="560.0" prefWidth="962.0" style="-fx-background-color: white; -fx-border-color: #384B91; -fx-border-width: 2;">
                             <columns>
                                 <TableColumn fx:id="tabelaIdProduto" prefWidth="53.0" text="ID" />
                                 <TableColumn fx:id="tabelaNomeProduto" prefWidth="201.0" text="Nome" />
@@ -254,7 +254,7 @@
                                 </AnchorPane>
                             </children>
                         </StackPane>
-                        <TableView fx:id="TabelaSQLVendas" layoutX="22.0" layoutY="18.0" prefHeight="629.0" prefWidth="686.0" style="-fx-background-color: WHITE; -fx-border-color: #384B91; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-width: 10;">
+                        <TableView fx:id="TabelaSQLVendas" layoutX="22.0" layoutY="18.0" prefHeight="629.0" prefWidth="686.0" style="-fx-background-color: WHITE; -fx-border-color: #384B91; -fx-border-width: 2;">
                             <columns>
                                 <TableColumn fx:id="colunaIdVenda" prefWidth="67.0" text="ID" />
                                 <TableColumn fx:id="colunaIdDataVenda" prefWidth="112.0" text="Data da Venda" />
@@ -389,7 +389,7 @@
                 </AnchorPane>
                 <AnchorPane fx:id="RelatorioEstoque" prefHeight="200.0" prefWidth="200.0">
                     <children>
-                        <AnchorPane layoutX="14.0" layoutY="21.0" prefHeight="629.0" prefWidth="909.0" style="-fx-background-radius: 25; -fx-border-color: #2C3E50; -fx-background-color: #F0F4F8; -fx-border-radius: 25; -fx-border-width: 4;">
+                        <AnchorPane layoutX="14.0" layoutY="21.0" prefHeight="629.0" prefWidth="909.0" style="-fx-background-radius: 25; -fx-border-color: #2C3E50; -fx-background-color: #F0F4F8; -fx-border-radius: 25; -fx-border-width: 2;">
                             <children>
                                 <TableView fx:id="TabelaRelatorioEstoqueBaixo" layoutX="28.0" layoutY="71.0" prefHeight="524.0" prefWidth="406.0" style="-fx-background-color: #F0F4F8;">
                                     <columns>
@@ -441,7 +441,7 @@
                 </AnchorPane>
                 <AnchorPane fx:id="TelaRelatorioVenda" prefHeight="671.0" prefWidth="974.0">
                     <children>
-                        <AnchorPane layoutX="40.0" layoutY="21.0" prefHeight="629.0" prefWidth="723.0" style="-fx-background-radius: 25; -fx-border-color: #2C3E50; -fx-background-color: #F0F4F8; -fx-border-radius: 25; -fx-border-width: 4;">
+                        <AnchorPane layoutX="40.0" layoutY="21.0" prefHeight="629.0" prefWidth="723.0" style="-fx-background-radius: 25; -fx-border-color: #2C3E50; -fx-background-color: #F0F4F8; -fx-border-radius: 25; -fx-border-width: 2;">
                             <children>
                                 <TableView fx:id="tabelaVendasPorPeriodo" layoutX="38.0" layoutY="71.0" onMouseClicked="#acaoVerListaVendaRelatorio" prefHeight="274.0" prefWidth="639.0" style="-fx-background-color: #F0F4F8;">
                                     <columns>
@@ -456,7 +456,7 @@
                                         <Font name="Arial" size="23.0" />
                                     </font>
                                 </Label>
-                                <Label fx:id="LabelRelatorioVenda" layoutX="413.0" layoutY="362.0" prefHeight="20.0" prefWidth="296.0">
+                                <Label fx:id="LabelRelatorioVenda" layoutX="415.0" layoutY="362.0" prefHeight="20.0" prefWidth="277.0">
                                     <font>
                                         <Font name="Arial" size="17.0" />
                                     </font>
@@ -475,17 +475,17 @@
                                 </Label>
                                 <AnchorPane layoutX="419.0" layoutY="498.0" prefHeight="48.0" prefWidth="268.0" styleClass="anchor-pane" stylesheets="@../stylesheets/venda.css">
                                     <children>
-                                        <Label layoutX="18.0" layoutY="14.0" stylesheets="@../stylesheets/venda.css" text="Lucro Total:" textFill="WHITE">
+                                        <Label layoutX="14.0" layoutY="12.0" stylesheets="@../stylesheets/venda.css" text="Lucro Total:" textFill="WHITE">
                                             <font>
                                                 <Font name="Tahoma" size="17.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="109.0" layoutY="14.0" text="R$" textFill="WHITE">
+                                        <Label layoutX="109.0" layoutY="12.0" text="R$" textFill="WHITE">
                                             <font>
                                                 <Font name="Tahoma" size="17.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="lucroTotalRelatorio" alignment="CENTER" contentDisplay="RIGHT" layoutX="138.0" layoutY="6.0" prefHeight="35.0" prefWidth="113.0" style="-fx-text-alignment: RIGHT; -fx-text-fill: WHITE;" styleClass="label-total-compras" stylesheets="@../stylesheets/venda.css">
+                                        <Label fx:id="lucroTotalRelatorio" alignment="CENTER" contentDisplay="RIGHT" layoutX="144.0" layoutY="6.0" prefHeight="35.0" prefWidth="113.0" style="-fx-text-alignment: RIGHT; -fx-text-fill: WHITE;" styleClass="label-total-compras" stylesheets="@../stylesheets/venda.css">
                                             <font>
                                                 <Font name="Tahoma Bold" size="16.0" />
                                             </font>
@@ -494,17 +494,17 @@
                                 </AnchorPane>
                                 <AnchorPane layoutX="419.0" layoutY="438.0" prefHeight="48.0" prefWidth="268.0" styleClass="anchor-pane" stylesheets="@../stylesheets/venda.css">
                                     <children>
-                                        <Label layoutX="12.0" layoutY="14.0" stylesheets="@../stylesheets/venda.css" text="Faturamento:" textFill="WHITE">
+                                        <Label layoutX="14.0" layoutY="14.0" stylesheets="@../stylesheets/venda.css" text="Faturamento:" textFill="WHITE">
                                             <font>
                                                 <Font name="Tahoma" size="17.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="114.0" layoutY="14.0" text="R$" textFill="WHITE">
+                                        <Label layoutX="116.0" layoutY="14.0" text="R$" textFill="WHITE">
                                             <font>
                                                 <Font name="Tahoma" size="17.0" />
                                             </font>
                                         </Label>
-                                        <Label fx:id="faturamentoRelatorio" alignment="CENTER" contentDisplay="RIGHT" layoutX="143.0" layoutY="6.0" prefHeight="35.0" prefWidth="113.0" style="-fx-text-alignment: RIGHT; -fx-text-fill: WHITE;" styleClass="label-total-compras" stylesheets="@../stylesheets/venda.css">
+                                        <Label fx:id="faturamentoRelatorio" alignment="CENTER" contentDisplay="RIGHT" layoutX="144.0" layoutY="6.0" prefHeight="35.0" prefWidth="113.0" style="-fx-text-alignment: RIGHT; -fx-text-fill: WHITE;" styleClass="label-total-compras" stylesheets="@../stylesheets/venda.css">
                                             <font>
                                                 <Font name="Tahoma Bold" size="16.0" />
                                             </font>
@@ -557,19 +557,19 @@
                 </AnchorPane>
             </children>
         </StackPane>
-        <AnchorPane layoutX="223.0" layoutY="-12.0" prefHeight="65.0" prefWidth="1052.0" styleClass="anchor-pane" stylesheets="@../stylesheets/venda.css">
+        <AnchorPane layoutX="235.0" layoutY="-16.0" prefHeight="65.0" prefWidth="1028.0" styleClass="anchor-pane" stylesheets="@../stylesheets/venda.css">
             <children>
-                <Label fx:id="labelRelogio" layoutX="113.0" layoutY="21.0" prefHeight="31.0" prefWidth="69.0" textFill="WHITE">
+                <Label fx:id="labelRelogio" layoutX="112.0" layoutY="23.0" prefHeight="31.0" prefWidth="69.0" textFill="WHITE">
                     <font>
                         <Font name="Arial Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label fx:id="labelData" layoutX="14.0" layoutY="21.0" prefHeight="31.0" prefWidth="91.0" textFill="WHITE">
+                <Label fx:id="labelData" layoutX="14.0" layoutY="23.0" prefHeight="31.0" prefWidth="91.0" textFill="WHITE">
                     <font>
                         <Font name="Arial Bold" size="16.0" />
                     </font>
                 </Label>
-                <Button layoutX="999.0" layoutY="19.0" mnemonicParsing="false" onAction="#logoff" prefHeight="33.0" prefWidth="33.0" styleClass="Botao1">
+                <Button layoutX="989.0" layoutY="19.0" mnemonicParsing="false" onAction="#logoff" prefHeight="33.0" prefWidth="33.0" styleClass="Botao1">
                     <graphic>
                         <ImageView fitHeight="21.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                             <image>
