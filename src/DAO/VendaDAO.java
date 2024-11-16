@@ -3,11 +3,7 @@ package DAO;
 import models.Venda;
 import database.Conexao;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import javafx.collections.FXCollections;
@@ -16,31 +12,27 @@ import javafx.collections.ObservableList;
 
 public class VendaDAO {
 
+    private static final String DATABASE_URL = "jdbc:sqlite:Banco.db";
+
     public ObservableList<Venda> pesquisarVendas(String pesquisa) {
         String sql = "SELECT idVenda, dataVenda, metodoPagamento, totalVenda, clienteNome FROM Venda " +
                 "WHERE metodoPagamento LIKE ? OR clienteNome LIKE ? OR DATE(dataVenda) = ?";
 
         ObservableList<Venda> vendas = FXCollections.observableArrayList();
 
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setString(1, "%" + pesquisa + "%");
             stmt.setString(2, "%" + pesquisa + "%");
-
-            try {
-                LocalDate dataPesquisa = LocalDate.parse(pesquisa);
-                stmt.setDate(3, Date.valueOf(dataPesquisa));
-            } catch (DateTimeParseException e) {
-                stmt.setDate(3, null);
-            }
+            stmt.setString(3, pesquisa.matches("\\d{4}-\\d{2}-\\d{2}") ? String.valueOf(Date.valueOf(LocalDate.parse(pesquisa))) : null);
 
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Venda venda = new Venda();
                 venda.setIdVenda(rs.getInt("idVenda"));
-                venda.setDataVenda(rs.getDate("dataVenda").toLocalDate());
+                venda.setDataVenda(rs.getString("dataVenda"));
                 venda.setMetodoPagamento(rs.getString("metodoPagamento"));
                 venda.setTotalVenda(rs.getDouble("totalVenda"));
                 venda.setClienteNome(rs.getString("clienteNome"));
@@ -59,9 +51,9 @@ public class VendaDAO {
         String sqlRemoverItens = "DELETE FROM ItensVenda WHERE idVenda = ?";
         String sqlRemoverVenda = "DELETE FROM Venda WHERE idVenda = ?";
 
-        try (Connection connection = Conexao.getConnection();
-             PreparedStatement stmtRemoverItens = connection.prepareStatement(sqlRemoverItens);
-             PreparedStatement stmtRemoverVenda = connection.prepareStatement(sqlRemoverVenda)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement stmtRemoverItens = conexao.prepareStatement(sqlRemoverItens);
+             PreparedStatement stmtRemoverVenda = conexao.prepareStatement(sqlRemoverVenda)) {
 
             stmtRemoverItens.setInt(1, idVenda);
             stmtRemoverItens.executeUpdate();
@@ -80,8 +72,8 @@ public class VendaDAO {
     public boolean atualizarTotalVenda(int idVenda, double totalVenda) {
         String sql = "UPDATE Venda SET totalVenda = ? WHERE idVenda = ?";
 
-        try (Connection connection = Conexao.getConnection();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setDouble(1, totalVenda);
             stmt.setInt(2, idVenda);
@@ -94,7 +86,7 @@ public class VendaDAO {
         }
     }
 
-    public ObservableList<Venda> buscarVendasPorPeriodo(Date inicio, Date fim) {
+    public ObservableList<Venda> buscarVendasPorPeriodo(String inicio, String fim) {
         ObservableList<Venda> vendas = FXCollections.observableArrayList();
         String sql = """
             SELECT idVenda, dataVenda, totalVenda, clienteNome
@@ -102,16 +94,16 @@ public class VendaDAO {
             WHERE dataVenda BETWEEN ? AND ?
             """;
 
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
-            stmt.setDate(1, inicio);
-            stmt.setDate(2, fim);
+            stmt.setString(1, inicio);
+            stmt.setString(2, fim);
 
             try (ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
                     int idVenda = rs.getInt("idVenda");
-                    LocalDate dataVenda = rs.getDate("dataVenda").toLocalDate();
+                    String dataVenda = rs.getString("dataVenda");
                     double totalVenda = rs.getDouble("totalVenda");
                     String clienteNome = rs.getString("clienteNome");
 
@@ -132,7 +124,7 @@ public class VendaDAO {
         return total;
     }
 
-    public double calcularLucroBruto(Date inicio, Date fim) {
+    public double calcularLucroBruto(String inicio, String fim) {
         double lucroBruto = 0.0;
         String sql = """
             SELECT SUM(iv.quantidade * (iv.precoUnitario - p.custo)) AS lucroBruto
@@ -154,7 +146,7 @@ public class VendaDAO {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Erro ao calcular o lucrobruto: " + e.getMessage());
         }
 
         return lucroBruto;

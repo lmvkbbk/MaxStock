@@ -9,12 +9,14 @@ import javafx.stage.Stage;
 
 import database.*;
 
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class Main extends Application {
 
-    public static void main(String[] args) {
-        BancoDeDados.createDatabaseAndTables();
+    public static void main(String[] args) throws SQLException {
+        criarBancoDeDados.createDatabaseAndTables();
+        dadosBase.InsertingDataIntoTables();
         launch(args);
     }
 

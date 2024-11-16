@@ -3,22 +3,19 @@ package DAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import models.Produto;
-import database.Conexao;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ProdutoDAO {
+
+    private static final String DATABASE_URL = "jdbc:sqlite:Banco.db";
 
     public ObservableList<Produto> pesquisarProdutos(String pesquisa) {
         String sql = "SELECT id, nome, categoria, quantidade, custo, valor FROM Produto " +
                 "WHERE nome LIKE ? OR categoria LIKE ? OR quantidade = ?";
         ObservableList<Produto> produtos = FXCollections.observableArrayList();
 
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setString(1, "%" + pesquisa + "%");
             stmt.setString(2, "%" + pesquisa + "%");
@@ -26,7 +23,7 @@ public class ProdutoDAO {
             if (pesquisa.matches("\\d+")) {
                 stmt.setInt(3, Integer.parseInt(pesquisa));
             } else {
-                stmt.setInt(3, -1);
+                stmt.setNull(3, java.sql.Types.INTEGER);;
             }
 
             ResultSet rs = stmt.executeQuery();
@@ -53,8 +50,8 @@ public class ProdutoDAO {
     public boolean cadastrarProduto(Produto produto) {
         String sql = "INSERT INTO Produto (nome, categoria, quantidade, custo, valor) VALUES (?, ?, ?, ?, ?)";
 
-        try (Connection connection = Conexao.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement statement = conexao.prepareStatement(sql)) {
 
             statement.setString(1, produto.getNome());
             statement.setString(2, produto.getCategoria());
@@ -73,7 +70,7 @@ public class ProdutoDAO {
 
     public boolean removerProduto(int produtoId) {
         String sql = "DELETE FROM Produto WHERE id = ?";
-        try (Connection conexao = Conexao.getConnection();
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
              PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setInt(1, produtoId);
 
@@ -88,8 +85,8 @@ public class ProdutoDAO {
 
     public boolean atualizarProduto(Produto produto) {
         String sql = "UPDATE Produto SET nome = ?, categoria = ?, quantidade = ?, custo = ?, valor = ? WHERE id = ?";
-        try (Connection connection = Conexao.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement statement = conexao.prepareStatement(sql)) {
             statement.setString(1, produto.getNome());
             statement.setString(2, produto.getCategoria());
             statement.setInt(3, produto.getQuantidade());
@@ -111,8 +108,8 @@ public class ProdutoDAO {
                 "WHERE nome LIKE ? OR quantidade = ? OR valor = ?";
         ObservableList<Produto> produtos = FXCollections.observableArrayList();
 
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setString(1, "%" + pesquisa + "%");
 
@@ -153,7 +150,7 @@ public class ProdutoDAO {
     public boolean atualizarQuantidadeProduto(int idProduto, int quantidadeVendida) {
         String sql = "UPDATE Produto SET quantidade = quantidade - ? WHERE id = ?";
 
-        try (Connection conexao = Conexao.getConnection();
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setInt(1, quantidadeVendida);
@@ -172,8 +169,8 @@ public class ProdutoDAO {
         ObservableList<Produto> produtos = FXCollections.observableArrayList();
         String sql = "SELECT * FROM Produto WHERE quantidade > ? AND quantidade <= ?";
 
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setInt(1, min);
             stmt.setInt(2, max);
@@ -188,7 +185,7 @@ public class ProdutoDAO {
                 produtos.add(produto);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Erro ao Buscar produtos com quantidade baixa: " + e.getMessage());
         }
         return produtos;
     }
@@ -197,8 +194,8 @@ public class ProdutoDAO {
         ObservableList<Produto> produtos = FXCollections.observableArrayList();
         String sql = "SELECT * FROM Produto WHERE quantidade <= ?";
 
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setInt(1, quantidade);
             ResultSet rs = stmt.executeQuery();
@@ -212,7 +209,7 @@ public class ProdutoDAO {
                 produtos.add(produto);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Erro ao Buscar produtos com quantidade zerada: " + e.getMessage());
         }
         return produtos;
     }

@@ -32,6 +32,8 @@ import java.time.format.DateTimeFormatter;
 
 public class TelaAdministradorController {
 
+    private static final String DATABASE_URL = "jdbc:sqlite:Banco.db";
+
     AlertUtils alerta = new AlertUtils();
 
     @FXML
@@ -403,13 +405,14 @@ public class TelaAdministradorController {
         carregarBancoDadosVendas();
     }
 
+    // Metodos da tela produto
     public void carregarBancodeDadosCliente() {
 
         ObservableList<Cliente> clientes = FXCollections.observableArrayList();
         String query = "SELECT id, nome, cpf, data_nascimento, email, telefone FROM Cliente";
 
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query);
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement stmt = conexao.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
@@ -417,7 +420,7 @@ public class TelaAdministradorController {
                         rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("cpf"),
-                        rs.getDate("data_nascimento").toLocalDate(),
+                        rs.getString("data_nascimento"),
                         rs.getString("email"),
                         rs.getString("telefone")
                 );
@@ -545,7 +548,7 @@ public class TelaAdministradorController {
             ClienteAlteracaoCPF.setText(item.getCpf());
             ClienteAlteracaoEmail.setText(item.getEmail());
             ClienteAlteracaoTelefone.setText(item.getTelefone());
-            ClienteAlteracaoData.setValue(item.getDataNascimento());
+            ClienteAlteracaoData.setValue(LocalDate.parse(item.getDataNascimento()));
         } else {
             alerta.warning("Atenção", "Nenhum Cliente Selecionado",
                     "Por favor, selecione um Cliente da tabela antes de tentar alterá-lo.", null);
@@ -574,20 +577,7 @@ public class TelaAdministradorController {
         item.setCpf(ClienteAlteracaoCPF.getText());
         item.setEmail(ClienteAlteracaoEmail.getText());
         item.setTelefone(ClienteAlteracaoTelefone.getText());
-        LocalDate dataNascCliente = ClienteAlteracaoData.getValue();
-
-        if (dataNascCliente == null) {
-            String detalhes = """
-                    Esta informação é necessária para concluir o cadastro corretamente.
-                    
-                    Dica:
-                    -Lembre-se de usar o formato dd/mm/aaaa caso tenha digitado a Data""";
-
-            alerta.warning("Atenção", "Data de Nascimento Não Selecionada",
-                    "Por favor, insira uma data de nascimento antes de prosseguir.", detalhes);
-            return;
-        }
-        item.setDataNascimento(dataNascCliente);
+        item.setDataNascimento(String.valueOf(ClienteAlteracaoData.getValue()));
 
         ClienteDAO clienteDAO = new ClienteDAO();
         boolean sucesso = clienteDAO.atualizarCliente(item);
@@ -616,8 +606,8 @@ public class TelaAdministradorController {
         ObservableList<Produto> produtos = FXCollections.observableArrayList();
         String query = "SELECT id, nome, categoria, quantidade, custo, valor FROM Produto";
 
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query);
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement stmt = conexao.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
@@ -871,13 +861,13 @@ public class TelaAdministradorController {
         ObservableList<Venda> vendas = FXCollections.observableArrayList();
         String sql = "SELECT idVenda, dataVenda, metodoPagamento, totalVenda, clienteNome FROM Venda";
 
-        try (Connection conexao = Conexao.getConnection();
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
              Statement stmt = conexao.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
                 int idVenda = rs.getInt("idVenda");
-                LocalDate dataVenda = rs.getTimestamp("dataVenda").toLocalDateTime().toLocalDate();
+                String dataVenda = rs.getString("dataVenda");
                 String metodoPagamento = rs.getString("metodoPagamento");
                 double totalVenda = rs.getDouble("totalVenda");
                 String clienteNome = rs.getString("clienteNome");
@@ -989,12 +979,12 @@ public class TelaAdministradorController {
         }
     }
 
-    public int IdVenda(Date finaldataVenda, String Pagamento, String nomeCliente){
+    public int IdVenda(Date dataVenda, String Pagamento, String nomeCliente){
         String sqlVenda = "INSERT INTO Venda (dataVenda, metodoPagamento, totalVenda, clienteNome) VALUES (?, ?, 0, ?)";
-        try (Connection connection = Conexao.getConnection();
-             PreparedStatement stmtVenda = connection.prepareStatement(sqlVenda, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement stmtVenda = conexao.prepareStatement(sqlVenda, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmtVenda.setDate(1, finaldataVenda);
+            stmtVenda.setDate(1, Date.valueOf(dataVenda.toLocalDate()));
             stmtVenda.setString(2, Pagamento);
             stmtVenda.setString(3, nomeCliente);
             stmtVenda.executeUpdate();
@@ -1072,7 +1062,7 @@ public class TelaAdministradorController {
             TelaVerListaVenda.setVisible(false);
             TelaAlteracaoVenda.setVisible(true);
 
-            DataVendaAlteracao.setValue(venda.getDataVenda());
+            DataVendaAlteracao.setValue(LocalDate.parse(venda.getDataVenda()));
             PagamentoAlteracao.setValue(venda.getMetodoPagamento());
             alteracaoNomeClienteVenda.setText(venda.getClienteNome());
             setIdVenda(venda.getIdVenda());
@@ -1170,10 +1160,10 @@ public class TelaAdministradorController {
     public int IdVendaUpdate(Date novaDataVenda, String novoPagamento, String novoNomeCliente) {
         String sqlUpdate = "UPDATE Venda SET dataVenda = ?, metodoPagamento = ?, clienteNome = ? WHERE idVenda = ?";
 
-        try (Connection connection = Conexao.getConnection();
-             PreparedStatement stmtUpdate = connection.prepareStatement(sqlUpdate)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement stmtUpdate = conexao.prepareStatement(sqlUpdate)) {
 
-            stmtUpdate.setDate(1, novaDataVenda);
+            stmtUpdate.setString(1, String.valueOf(novaDataVenda));
             stmtUpdate.setString(2, novoPagamento);
             stmtUpdate.setString(3, novoNomeCliente);
             stmtUpdate.setInt(4, getIdVenda());
@@ -1204,8 +1194,8 @@ public class TelaAdministradorController {
 
         double total = 0.0;
 
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conexao.prepareStatement(sql)) {
 
             pstmt.setInt(1, idVenda);
             ResultSet rs = pstmt.executeQuery();
@@ -1235,8 +1225,8 @@ public class TelaAdministradorController {
                 "JOIN Produto p ON iv.idProduto = p.id " +
                 "WHERE iv.idVenda = ?";
 
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setInt(1, idVenda);
             ResultSet rs = stmt.executeQuery();
@@ -1261,6 +1251,7 @@ public class TelaAdministradorController {
 
             alerta.error("Erro ao Exibir Itens da Venda", "Falha ao Mostrar Itens da Venda",
                     "Ocorreu um erro ao tentar exibir os itens da venda. Verifique se todos os dados da venda estão corretos e completos.", detalhes);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -1268,8 +1259,8 @@ public class TelaAdministradorController {
         ObservableList<Produto> produtos = FXCollections.observableArrayList();
         String sql = "SELECT id, nome, quantidade, valor FROM Produto";
 
-        try (Connection connection = Conexao.getConnection();
-             Statement stmt = connection.createStatement();
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             Statement stmt = conexao.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
@@ -1442,11 +1433,8 @@ public class TelaAdministradorController {
 
     @FXML
     void carregarRelatorioVendaPorPeriodo(ActionEvent event) {
-        LocalDate dataInicioPeriodo = inicio.getValue();
-        Date dataInicioP;
-        if (dataInicioPeriodo != null) {
-            dataInicioP = java.sql.Date.valueOf(dataInicioPeriodo);
-        } else {
+        String dataInicioP = String.valueOf(inicio.getValue());
+        if (dataInicioP == null) {
             String detalhes = """
                     Esta informação é necessária para concluir o Relatorio corretamente.
                     
@@ -1458,11 +1446,8 @@ public class TelaAdministradorController {
             return;
         }
 
-        LocalDate dataFimPeriodo = fim.getValue();
-        Date dataFimP;
-        if (dataFimPeriodo != null) {
-            dataFimP = java.sql.Date.valueOf(dataFimPeriodo);
-        } else {
+        String dataFimP = String.valueOf(fim.getValue());
+        if (dataFimP == null) {
             String detalhes = """
                     Esta informação é necessária para concluir o Relatorio corretamente.
                     
@@ -1492,11 +1477,8 @@ public class TelaAdministradorController {
 
     @FXML
     void novaConsultaRelatorioVendaPorPeriodo(ActionEvent event){
-        LocalDate dataInicioPeriodo = NovoRelatorioVendasInicio.getValue();
-        Date dataInicioP;
-        if (dataInicioPeriodo != null) {
-            dataInicioP = java.sql.Date.valueOf(dataInicioPeriodo);
-        } else {
+        String dataInicioP = String.valueOf(NovoRelatorioVendasInicio.getValue());
+        if (dataInicioP == null) {
             String detalhes = """
                     Esta informação é necessária para concluir o Relatorio corretamente.
                     
@@ -1508,11 +1490,8 @@ public class TelaAdministradorController {
             return;
         }
 
-        LocalDate dataFimPeriodo = NovoRelatorioVendasFim.getValue();
-        Date dataFimP;
-        if (dataFimPeriodo != null) {
-            dataFimP = java.sql.Date.valueOf(dataFimPeriodo);
-        } else {
+        String dataFimP = String.valueOf(NovoRelatorioVendasFim.getValue());
+        if (dataFimP == null) {
             String detalhes = """
                     Esta informação é necessária para concluir o Relatorio corretamente.
                     
@@ -1523,14 +1502,13 @@ public class TelaAdministradorController {
                     "Por favor, selecione uma data final antes de prosseguir.", detalhes);
             return;
         }
-
         RelatorioVendaPorPeriodo(dataInicioP,dataFimP);
         NovoRelatorioVendasInicio.setValue(null);
         NovoRelatorioVendasFim.setValue(null);
         tabelaListaComprasVendaRelatorio.getItems().clear();
     }
 
-    public void RelatorioVendaPorPeriodo(Date inicio, Date fim){
+    public void RelatorioVendaPorPeriodo(String inicio, String fim){
         VendaDAO vendaDAO = new VendaDAO();
         ObservableList<Venda> vendas = vendaDAO.buscarVendasPorPeriodo(inicio, fim);
 

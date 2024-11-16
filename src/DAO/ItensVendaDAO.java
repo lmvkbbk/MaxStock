@@ -1,16 +1,14 @@
 package DAO;
 
-import database.Conexao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import models.ItensVenda;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ItensVendaDAO {
+
+    private static final String DATABASE_URL = "jdbc:sqlite:Banco.db";
 
     public ObservableList<ItensVenda> buscarItensVendaPorId(int idVenda) {
         ObservableList<ItensVenda> itensVenda = FXCollections.observableArrayList();
@@ -19,8 +17,8 @@ public class ItensVendaDAO {
                 "JOIN Produto p ON iv.idProduto = p.id " +
                 "WHERE iv.idVenda = ?";
 
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setInt(1, idVenda);
 
@@ -44,8 +42,8 @@ public class ItensVendaDAO {
     public boolean adicionarItem(int idProduto, int quantidade, double precoUnitario, int idVenda) {
         String sql = "INSERT INTO ItensVenda (idProduto, quantidade, precoUnitario, idVenda) VALUES (?, ?, ?, ?)";
 
-        try (Connection conn = Conexao.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement pstmt = conexao.prepareStatement(sql)) {
 
             pstmt.setInt(1, idProduto);
             pstmt.setInt(2, quantidade);
@@ -63,8 +61,8 @@ public class ItensVendaDAO {
     public boolean removerItemVenda(int idItemVenda) {
         String sql = "DELETE FROM ItensVenda WHERE idItemVenda = ?";
 
-        try (Connection connection = Conexao.getConnection();
-             PreparedStatement stmt = connection.prepareStatement(sql)) {
+        try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
 
             stmt.setInt(1, idItemVenda);
             int rowsAffected = stmt.executeUpdate();
