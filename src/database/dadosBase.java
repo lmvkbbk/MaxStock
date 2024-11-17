@@ -105,46 +105,46 @@ public class dadosBase {
 
             if (isTableEmpty(stmt, "Venda")) {
                 String sqlInsertVendas = "INSERT INTO Venda (dataVenda, metodoPagamento, totalVenda, clienteNome) VALUES " +
-                        "('2024-01-01', 'Cartão de Crédito', 50.00, 'João Silva'), " +
-                        "('2024-01-02', 'Dinheiro', 30.00, 'Maria Souza'), " +
-                        "('2024-01-03', 'Pix', 120.00, 'Carlos Pereira'), " +
-                        "('2024-01-04', 'Cartão de Débito', 75.50, 'Ana Oliveira'), " +
-                        "('2024-01-05', 'Cartão de Crédito', 25.30, 'Roberto Costa'), " +
-                        "('2024-01-06', 'Pix', 200.00, 'Beatriz Lima'), " +
-                        "('2024-01-07', 'Cartão de Débito', 80.90, 'Ricardo Almeida'), " +
-                        "('2024-01-08', 'Pix', 150.75, 'Fernanda Santos'), " +
-                        "('2024-01-09', 'Dinheiro', 60.00, 'Gustavo Fernandes'), " +
-                        "('2024-01-10', 'Cartão de Crédito', 95.00, 'Juliana Rocha'), " +
-                        "('2024-01-11', 'Cartão de Débito', 45.80, 'Paulo Ramos'), " +
-                        "('2024-01-12', 'Pix', 130.00, 'Carla Gomes'), " +
-                        "('2024-01-13', 'Dinheiro', 77.50, 'Lucas Andrade'), " +
-                        "('2024-01-14', 'Cartão de Crédito', 67.00, 'Isabela Teixeira'), " +
-                        "('2024-01-15', 'Pix', 210.50, 'Thiago Martins'), " +
-                        "('2024-01-16', 'Dinheiro', 100.00, 'Mariana Dias'), " +
-                        "('2024-01-17', 'Cartão de Débito', 150.75, 'André Barbosa'), " +
-                        "('2024-01-18', 'Cartão de Crédito', 250.00, 'Larissa Sousa'), " +
-                        "('2024-01-19', 'Pix', 80.00, 'Rafael Correia'), " +
-                        "('2024-01-20', 'Dinheiro', 30.50, 'Gabriela Vieira'), " +
-                        "('2024-01-21', 'Cartão de Crédito', 40.00, 'Pedro Carvalho'), " +
-                        "('2024-01-22', 'Pix', 95.00, 'Amanda Castro'), " +
-                        "('2024-01-23', 'Pix', 110.00, 'Renato Borges'), " +
-                        "('2024-01-24', 'Cartão de Débito', 75.30, 'Priscila Melo'), " +
-                        "('2024-01-25', 'Cartão de Crédito', 55.00, 'Leandro Araújo'), " +
-                        "('2024-01-26', 'Pix', 200.25, 'Natália Guimarães'), " +
-                        "('2024-01-27', 'Dinheiro', 30.00, 'Rogério Cunha'), " +
-                        "('2024-01-28', 'Cartão de Crédito', 90.80, 'Monique Santana'), " +
-                        "('2024-01-29', 'Cartão de Débito', 60.25, 'Marcelo Nogueira'), " +
-                        "('2024-01-30', 'Pix', 175.00, 'Aline Cardoso'), " +
-                        "('2024-01-31', 'Dinheiro', 45.70, 'Daniel Antunes'), " +
-                        "('2024-02-01', 'Cartão de Crédito', 130.90, 'Tatiane Silva'), " +
-                        "('2024-02-02', 'Dinheiro', 250.00, 'Henrique Moura'), " +
-                        "('2024-02-03', 'Pix', 120.00, 'Camila Carvalho'), " +
-                        "('2024-02-04', 'Cartão de Débito', 75.50, 'Douglas Lima'), " +
-                        "('2024-02-05', 'Dinheiro', 95.00, 'Débora Mendes'), " +
-                        "('2024-02-06', 'Cartão de Crédito', 89.20, 'Fábio Freitas'), " +
-                        "('2024-02-07', 'Pix', 60.30, 'Cíntia Amaral'), " +
-                        "('2024-02-08', 'Dinheiro', 50.00, 'Jonas Farias'), " +
-                        "('2024-02-09', 'Pix', 200.00, 'Vanessa Ribeiro');";
+                        "('2024-01-01', 'Cartão de Crédito', 40.00, 'João Silva'), " +
+                        "('2024-01-02', 'Dinheiro', 15.00, 'Maria Souza'), " +
+                        "('2024-01-03', 'Pix', 57.25, 'Carlos Pereira'), " +
+                        "('2024-01-04', 'Cartão de Débito', 45.50, 'Ana Oliveira'), " +
+                        "('2024-01-05', 'Cartão de Crédito', 15.75, 'Roberto Costa'), " +
+                        "('2024-01-06', 'Pix', 44.00, 'Beatriz Lima'), " +
+                        "('2024-01-07', 'Cartão de Débito', 30.00, 'Ricardo Almeida'), " +
+                        "('2024-01-08', 'Pix', 54.00, 'Fernanda Santos'), " +
+                        "('2024-01-09', 'Dinheiro', 52.50, 'Gustavo Fernandes'), " +
+                        "('2024-01-10', 'Cartão de Crédito', 51.25, 'Juliana Rocha'), " +
+                        "('2024-01-11', 'Cartão de Débito', 73.50, 'Paulo Ramos'), " +
+                        "('2024-01-12', 'Pix', 133.75, 'Carla Gomes'), " +
+                        "('2024-01-13', 'Dinheiro', 69.00, 'Lucas Andrade'), " +
+                        "('2024-01-14', 'Cartão de Crédito', 47.50, 'Isabela Teixeira'), " +
+                        "('2024-01-15', 'Pix', 58.00, 'Thiago Martins'), " +
+                        "('2024-01-16', 'Dinheiro', 60.20, 'Mariana Dias'), " +
+                        "('2024-01-17', 'Cartão de Débito', 24.90, 'André Barbosa'), " +
+                        "('2024-01-18', 'Cartão de Crédito', 167.50, 'Larissa Sousa'), " +
+                        "('2024-01-19', 'Pix', 0.00, 'Rafael Correia'), " +
+                        "('2024-01-20', 'Dinheiro', 0.00, 'Gabriela Vieira'), " +
+                        "('2024-01-21', 'Cartão de Crédito', 0.00, 'Pedro Carvalho'), " +
+                        "('2024-01-22', 'Pix', 0.00, 'Amanda Castro'), " +
+                        "('2024-01-23', 'Pix', 0.00, 'Renato Borges'), " +
+                        "('2024-01-24', 'Cartão de Débito', 0.00, 'Priscila Melo'), " +
+                        "('2024-01-25', 'Cartão de Crédito', 0.00, 'Leandro Araújo'), " +
+                        "('2024-01-26', 'Pix', 0.00, 'Natália Guimarães'), " +
+                        "('2024-01-27', 'Dinheiro', 00.00, 'Rogério Cunha'), " +
+                        "('2024-01-28', 'Cartão de Crédito', 0.00, 'Monique Santana'), " +
+                        "('2024-01-29', 'Cartão de Débito', 0.00, 'Marcelo Nogueira'), " +
+                        "('2024-01-30', 'Pix', 0.00, 'Aline Cardoso'), " +
+                        "('2024-01-31', 'Dinheiro', 0.00, 'Daniel Antunes'), " +
+                        "('2024-02-01', 'Cartão de Crédito', 177.50, 'Tatiane Silva'), " +
+                        "('2024-02-02', 'Dinheiro', 17.50, 'Henrique Moura'), " +
+                        "('2024-02-03', 'Pix', 16.00, 'Camila Carvalho'), " +
+                        "('2024-02-04', 'Cartão de Débito', 30.00, 'Douglas Lima'), " +
+                        "('2024-02-05', 'Dinheiro', 0.00, 'Débora Mendes'), " +
+                        "('2024-02-06', 'Cartão de Crédito', 0.00, 'Fábio Freitas'), " +
+                        "('2024-02-07', 'Pix', 22.50, 'Cíntia Amaral'), " +
+                        "('2024-02-08', 'Dinheiro', 32.50, 'Jonas Farias'), " +
+                        "('2024-02-09', 'Pix', 52.00, 'Vanessa Ribeiro');";
                 stmt.execute(sqlInsertVendas);
                 System.out.println("Registros inseridos na tabela Venda.");
             }

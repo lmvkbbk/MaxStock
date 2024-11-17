@@ -430,7 +430,8 @@ public class TelaAdministradorController {
 
         } catch (SQLException e) {
             alerta.error("Erro de Conexão", "Falha ao carregar dados do cliente" ,
-                    "Ocorreu um erro ao tentar carregar os dados de cliente. Por favor, tente novamente ou contate o suporte.", e.getMessage());
+                    "Ocorreu um erro ao tentar carregar os dados de cliente. Por favor, tente novamente ou contate o suporte.", null);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -644,7 +645,8 @@ public class TelaAdministradorController {
 
         } catch (SQLException e) {
             alerta.error("Erro de Conexão", "Falha ao carregar dados dos Produtos" ,
-                    "Ocorreu um erro ao tentar carregar os dados de vendas. Por favor, tente novamente ou contate o suporte.", e.getMessage());
+                    "Ocorreu um erro ao tentar carregar os dados de vendas. Por favor, tente novamente ou contate o suporte.", null);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -698,6 +700,7 @@ public class TelaAdministradorController {
 
             alerta.error("Erro de Entrada", "Entrada Inválida Detectada",
                     "Por favor, insira valores numéricos válidos para os campos: quantidade, custo e valor.", detalhes);
+            System.out.println(e.getMessage());
             return;
         }
 
@@ -813,6 +816,7 @@ public class TelaAdministradorController {
                     - Não utilize letras ou caracteres especiais.""";
             alerta.error("Erro de Entrada", "Valores Inválidos Detectados",
                     "Por favor, insira valores numéricos válidos em algum dos campos: quantidade, custo e valor.", detalhes);
+            System.out.println(e.getMessage());
             return;
         }
 
@@ -879,7 +883,8 @@ public class TelaAdministradorController {
         } catch (SQLException e) {
 
             alerta.error("Erro ao Carregar Dados de Vendas", "Não foi possível acessar o banco de dados de vendas",
-                    "Ocorreu um erro ao tentar carregar os dados de vendas. Por favor, tente novamente ou contate o suporte.", e.getMessage());
+                    "Ocorreu um erro ao tentar carregar os dados de vendas. Por favor, tente novamente ou contate o suporte.", null);
+            System.out.println(e.getMessage());
         }
         TabelaSQLVendas.setItems(vendas);
     }
@@ -991,7 +996,7 @@ public class TelaAdministradorController {
                     return rs.getInt(1);
                 }
             }
-        } catch (SQLException ex) {
+        } catch (SQLException e) {
             String detalhes = """
                     
                     Possíveis causas:
@@ -1001,6 +1006,7 @@ public class TelaAdministradorController {
 
             alerta.error("Erro ao Adicionar Venda", "Não foi possível adicionar a venda",
                     "Ocorreu um erro ao tentar adicionar a venda. Verifique as informações inseridas e tente novamente.", detalhes);
+            System.out.println(e.getMessage());
         }
         return -1;
     }
@@ -1171,6 +1177,7 @@ public class TelaAdministradorController {
 
             alerta.error("Erro ao Atualizar Venda", "Falha na Atualização da Venda",
                     "Ocorreu um erro ao tentar atualizar a venda. Verifique a conexão com o banco de dados e se todos os dados foram preenchidos corretamente.", detalhes);
+            System.out.println(e.getMessage());
         }
         return -1;
     }
@@ -1201,6 +1208,7 @@ public class TelaAdministradorController {
 
             alerta.error("Erro ao Calcular Preço Total", "Falha no Cálculo do Preço Total",
                     "Ocorreu um erro ao tentar calcular o preço total da venda. Verifique os dados de preço e quantidade inseridos.", detalhes);
+            System.out.println(e.getMessage());
             total = 0;
         }
 
@@ -1263,7 +1271,8 @@ public class TelaAdministradorController {
             TabelaProdutosVenda.setItems(produtos);
         } catch (SQLException e) {
             alerta.error("Erro ao Carregar Dados do Produto", "Falha ao Carregar os Dados do Produto",
-                    "Ocorreu um erro ao tentar carregar os dados do produto. Verifique a conexão com o banco de dados e os dados inseridos.", e.getMessage());
+                    "Ocorreu um erro ao tentar carregar os dados do produto. Verifique a conexão com o banco de dados e os dados inseridos.", null);
+            System.out.println(e.getMessage());
         }
     }
 
@@ -1318,6 +1327,7 @@ public class TelaAdministradorController {
 
                 alerta.warning("Atenção", "Quantidade Inválida",
                         "Por favor, insira uma quantidade válida para o produto. A quantidade deve ser um número positivo.", detalhes);
+                System.out.println(e.getMessage());
             }
         } else {
             alerta.warning("Atenção", "Produto Não Selecionado", "Por favor, selecione um produto antes de adicioná-lo à lista de venda.", null);
@@ -1568,6 +1578,7 @@ public class TelaAdministradorController {
         } catch (Exception e) {
             alerta.error("Erro ao Carregar Produtos", "Problema ao Obter Informações de Estoque Baixo",
                     "Não foi possível carregar a lista de produtos com nivel baixo no estoque. Verifique sua conexão e tente novamente.", null );
+            System.out.println(e.getMessage());
         }
 
         try {
@@ -1576,6 +1587,7 @@ public class TelaAdministradorController {
         } catch (Exception e) {
             alerta.error("Erro ao Carregar Produtos", "Problema ao Obter Informações de Estoque Critico",
                     "Não foi possível carregar a lista de produtos com nivel critico no  estoque. Verifique sua conexão e tente novamente.", null);
+            System.out.println(e.getMessage());
         }
     }
 }
