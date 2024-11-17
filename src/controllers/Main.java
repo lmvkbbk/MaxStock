@@ -28,8 +28,6 @@ public class Main extends Application {
         Image icon = new Image(getClass().getResourceAsStream("/Resources/MaxStockLogo.png"));
 
         primaryStage.getIcons().add(icon);
-
-        primaryStage.setTitle("MaxStock");
         primaryStage.setScene(new Scene(root, 1280, 720));
         primaryStage.setResizable(false);
         primaryStage.show();

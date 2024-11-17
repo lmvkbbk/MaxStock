@@ -308,107 +308,41 @@
                 </AnchorPane>
                 <AnchorPane fx:id="CenaPrincipalProduto" prefHeight="200.0" prefWidth="200.0">
                     <children>
-                        <StackPane fx:id="PainelSecundarioProduto" layoutX="730.0" layoutY="124.0" prefHeight="423.0" prefWidth="289.0">
+                        <StackPane fx:id="PainelSecundarioProduto" layoutX="730.0" layoutY="162.0" prefHeight="394.0" prefWidth="289.0">
                             <children>
-                                <AnchorPane fx:id="CenaCadastrarProduto" prefHeight="512.0" prefWidth="289.0" styleClass="anchor_pane" stylesheets="@../stylesheets/anchorpanes.css">
-                                    <children>
-                                        <TextField fx:id="produtoCadastroQuantidade" layoutX="31.0" layoutY="189.0" prefHeight="25.0" prefWidth="106.0" />
-                                        <TextField fx:id="produtoCadastroCategoria" layoutX="30.0" layoutY="130.0" prefHeight="25.0" prefWidth="231.0" />
-                                        <TextField fx:id="produtoCadastroNome" layoutX="30.0" layoutY="72.0" prefHeight="25.0" prefWidth="231.0" />
-                                        <TextField fx:id="produtoCadastroValor" layoutX="32.0" layoutY="245.0" prefHeight="25.0" prefWidth="106.0" />
-                                        <TextField fx:id="produtoCadastroCusto" layoutX="150.0" layoutY="189.0" prefHeight="25.0" prefWidth="110.0" />
-                                        <Label layoutX="31.0" layoutY="55.0" text="Nome do Produto" textFill="WHITE">
-                                            <font>
-                                                <Font name="Arial" size="14.0" />
-                                            </font>
-                                        </Label>
-                                        <Label layoutX="31.0" layoutY="113.0" prefHeight="16.0" prefWidth="69.0" text="Categoria" textFill="WHITE">
-                                            <font>
-                                                <Font name="Arial" size="14.0" />
-                                            </font>
-                                        </Label>
-                                        <Label layoutX="32.0" layoutY="172.0" text="Quantidade" textFill="WHITE">
-                                            <font>
-                                                <Font name="Arial" size="14.0" />
-                                            </font>
-                                        </Label>
-                                        <Label layoutX="151.0" layoutY="172.0" text="Custo" textFill="WHITE">
-                                            <font>
-                                                <Font name="Arial" size="14.0" />
-                                            </font>
-                                        </Label>
-                                        <Label layoutX="33.0" layoutY="228.0" text="Valor" textFill="WHITE">
-                                            <font>
-                                                <Font name="Arial" size="14.0" />
-                                            </font>
-                                        </Label>
-                                        <Button fx:id="BotaoCadastroProduto" contentDisplay="RIGHT" layoutX="26.0" layoutY="331.0" mnemonicParsing="false" onAction="#acaoCadastroProduto" prefHeight="48.0" prefWidth="158.0" styleClass="BotaoAdicionar" stylesheets="@../stylesheets/stylebuttonsql.css" text="Cadastrar ">
-                                            <graphic>
-                                                <ImageView fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../Resources/adicionarproduto.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                            <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                            </cursor>
-                                        </Button>
-                                        <Label fx:id="textoConfimacaoCadastroProduto" layoutX="69.0" layoutY="285.0" opacity="0.0" text="Novo Produto Adicionado">
-                                            <font>
-                                                <Font name="Tahoma Bold" size="12.0" />
-                                            </font>
-                                        </Label>
-                                        <Button layoutX="200.0" layoutY="331.0" mnemonicParsing="false" onAction="#acaoVoltarCadastroProduto" prefHeight="48.0" prefWidth="70.0" styleClass="BotaoPesquisa" stylesheets="@../stylesheets/stylebuttonsql.css">
-                                            <font>
-                                                <Font name="Tahoma Bold" size="12.0" />
-                                            </font>
-                                            <graphic>
-                                                <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                                    <image>
-                                                        <Image url="@../Resources/Volta.png" />
-                                                    </image>
-                                                </ImageView>
-                                            </graphic>
-                                            <cursor>
-                                                <Cursor fx:constant="HAND" />
-                                            </cursor>
-                                        </Button>
-                                    </children>
-                                </AnchorPane>
                                 <AnchorPane fx:id="CenaAlteracaoProduto" prefHeight="512.0" prefWidth="289.0" styleClass="anchor_pane" stylesheets="@../stylesheets/anchorpanes.css">
                                     <children>
-                                        <TextField fx:id="produtoAlteracaoQuantidade" layoutX="31.0" layoutY="189.0" prefHeight="25.0" prefWidth="106.0" />
-                                        <TextField fx:id="produtoAlteracaoCategoria" layoutX="30.0" layoutY="130.0" prefHeight="25.0" prefWidth="231.0" />
-                                        <TextField fx:id="produtoAlteracaoNome" layoutX="30.0" layoutY="72.0" prefHeight="25.0" prefWidth="231.0" />
-                                        <TextField fx:id="produtoAlteracaoValor" layoutX="32.0" layoutY="245.0" prefHeight="25.0" prefWidth="106.0" />
-                                        <TextField fx:id="produtoAlteracaoCusto" layoutX="150.0" layoutY="189.0" prefHeight="25.0" prefWidth="110.0" />
-                                        <Label layoutX="31.0" layoutY="55.0" text="Nome do Produto" textFill="WHITE">
+                                        <TextField fx:id="produtoAlteracaoQuantidade" layoutX="30.0" layoutY="166.0" prefHeight="25.0" prefWidth="106.0" />
+                                        <TextField fx:id="produtoAlteracaoCategoria" layoutX="29.0" layoutY="107.0" prefHeight="25.0" prefWidth="231.0" />
+                                        <TextField fx:id="produtoAlteracaoNome" layoutX="29.0" layoutY="49.0" prefHeight="25.0" prefWidth="231.0" />
+                                        <TextField fx:id="produtoAlteracaoValor" layoutX="31.0" layoutY="222.0" prefHeight="25.0" prefWidth="106.0" />
+                                        <TextField fx:id="produtoAlteracaoCusto" layoutX="149.0" layoutY="166.0" prefHeight="25.0" prefWidth="110.0" />
+                                        <Label layoutX="30.0" layoutY="32.0" text="Nome do Produto" textFill="WHITE">
                                             <font>
                                                 <Font name="Arial" size="14.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="31.0" layoutY="113.0" text="Categoria" textFill="WHITE">
+                                        <Label layoutX="30.0" layoutY="90.0" text="Categoria" textFill="WHITE">
                                             <font>
                                                 <Font name="Arial" size="14.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="32.0" layoutY="172.0" text="Quantidade" textFill="WHITE">
+                                        <Label layoutX="31.0" layoutY="149.0" text="Quantidade" textFill="WHITE">
                                             <font>
                                                 <Font name="Arial" size="14.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="151.0" layoutY="172.0" text="Custo" textFill="WHITE">
+                                        <Label layoutX="150.0" layoutY="149.0" text="Custo" textFill="WHITE">
                                             <font>
                                                 <Font name="Arial" size="14.0" />
                                             </font>
                                         </Label>
-                                        <Label layoutX="33.0" layoutY="228.0" text="Valor" textFill="WHITE">
+                                        <Label layoutX="32.0" layoutY="205.0" text="Valor" textFill="WHITE">
                                             <font>
                                                 <Font name="Arial" size="14.0" />
                                             </font>
                                         </Label>
-                                        <Button fx:id="BotaoAlteracaoCorretaProduto" contentDisplay="RIGHT" layoutX="26.0" layoutY="331.0" mnemonicParsing="false" onAction="#acaoUpdateProduto" prefHeight="48.0" prefWidth="158.0" styleClass="BotaoAdicionar" stylesheets="@../stylesheets/stylebuttonsql.css">
+                                        <Button fx:id="BotaoAlteracaoCorretaProduto" contentDisplay="RIGHT" layoutX="27.0" layoutY="309.0" mnemonicParsing="false" onAction="#acaoUpdateProduto" prefHeight="48.0" prefWidth="158.0" styleClass="BotaoAdicionar" stylesheets="@../stylesheets/stylebuttonsql.css">
                                             <graphic>
                                                 <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
@@ -420,7 +354,7 @@
                                                 <Cursor fx:constant="HAND" />
                                             </cursor>
                                         </Button>
-                                        <Button layoutX="200.0" layoutY="331.0" mnemonicParsing="false" onAction="#acaoVoltarAlteracaoProduto" prefHeight="48.0" prefWidth="70.0" styleClass="BotaoPesquisa" stylesheets="@../stylesheets/stylebuttonsql.css">
+                                        <Button layoutX="201.0" layoutY="309.0" mnemonicParsing="false" onAction="#acaoVoltarAlteracaoProduto" prefHeight="48.0" prefWidth="70.0" styleClass="BotaoPesquisa" stylesheets="@../stylesheets/stylebuttonsql.css">
                                             <font>
                                                 <Font name="Tahoma Bold" size="12.0" />
                                             </font>
@@ -437,9 +371,70 @@
                                         </Button>
                                     </children>
                                 </AnchorPane>
+                                <AnchorPane fx:id="CenaCadastrarProduto" prefHeight="512.0" prefWidth="289.0" styleClass="anchor_pane" stylesheets="@../stylesheets/anchorpanes.css">
+                                    <children>
+                                        <TextField fx:id="produtoCadastroQuantidade" layoutX="30.0" layoutY="166.0" prefHeight="25.0" prefWidth="106.0" />
+                                        <TextField fx:id="produtoCadastroCategoria" layoutX="29.0" layoutY="107.0" prefHeight="25.0" prefWidth="231.0" />
+                                        <TextField fx:id="produtoCadastroNome" layoutX="29.0" layoutY="49.0" prefHeight="25.0" prefWidth="231.0" />
+                                        <TextField fx:id="produtoCadastroValor" layoutX="31.0" layoutY="222.0" prefHeight="25.0" prefWidth="106.0" />
+                                        <TextField fx:id="produtoCadastroCusto" layoutX="149.0" layoutY="166.0" prefHeight="25.0" prefWidth="110.0" />
+                                        <Label layoutX="30.0" layoutY="32.0" text="Nome do Produto" textFill="WHITE">
+                                            <font>
+                                                <Font name="Arial" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label layoutX="30.0" layoutY="90.0" prefHeight="16.0" prefWidth="69.0" text="Categoria" textFill="WHITE">
+                                            <font>
+                                                <Font name="Arial" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label layoutX="31.0" layoutY="149.0" text="Quantidade" textFill="WHITE">
+                                            <font>
+                                                <Font name="Arial" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label layoutX="150.0" layoutY="149.0" text="Custo" textFill="WHITE">
+                                            <font>
+                                                <Font name="Arial" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label layoutX="32.0" layoutY="205.0" text="Valor" textFill="WHITE">
+                                            <font>
+                                                <Font name="Arial" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Button fx:id="BotaoCadastroProduto" contentDisplay="RIGHT" layoutX="27.0" layoutY="309.0" mnemonicParsing="false" onAction="#acaoCadastroProduto" prefHeight="48.0" prefWidth="158.0" styleClass="BotaoAdicionar" stylesheets="@../stylesheets/stylebuttonsql.css" text="Cadastrar ">
+                                            <graphic>
+                                                <ImageView fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../Resources/adicionarproduto.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                            </cursor>
+                                        </Button>
+                                        <Button layoutX="201.0" layoutY="309.0" mnemonicParsing="false" onAction="#acaoVoltarCadastroProduto" prefHeight="48.0" prefWidth="70.0" styleClass="BotaoPesquisa" stylesheets="@../stylesheets/stylebuttonsql.css">
+                                            <font>
+                                                <Font name="Tahoma Bold" size="12.0" />
+                                            </font>
+                                            <graphic>
+                                                <ImageView fitHeight="23.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@../Resources/Volta.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </graphic>
+                                            <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                            </cursor>
+                                        </Button>
+                                    </children>
+                                </AnchorPane>
                             </children>
                         </StackPane>
-                        <TableView fx:id="tabelaSQLProduto" layoutX="8.0" layoutY="98.0" prefHeight="524.0" prefWidth="708.0" style="-fx-background-color: White; -fx-border-color: #384B91; -fx-border-width: 2;">
+                        <TableView fx:id="tabelaSQLProduto" layoutX="7.0" layoutY="97.0" prefHeight="524.0" prefWidth="708.0" style="-fx-background-color: White; -fx-border-color: #384B91; -fx-border-width: 2;">
                             <columns>
                                 <TableColumn fx:id="tabelaIdProduto" prefWidth="67.0" text="ID" />
                                 <TableColumn fx:id="tabelaNomeProduto" prefWidth="126.0" text="Nome" />
@@ -689,7 +684,7 @@
                                 </AnchorPane>
                             </children>
                         </StackPane>
-                        <TableView fx:id="TabelaSQLVendas" layoutX="7.0" layoutY="96.0" prefHeight="524.0" prefWidth="708.0" style="-fx-background-color: WHITE; -fx-border-color: #384B91; -fx-border-width: 2;">
+                        <TableView fx:id="TabelaSQLVendas" layoutX="7.0" layoutY="97.0" prefHeight="524.0" prefWidth="708.0" style="-fx-background-color: WHITE; -fx-border-color: #384B91; -fx-border-width: 2;">
                             <columns>
                                 <TableColumn fx:id="colunaIdVenda" prefWidth="67.0" text="ID" />
                                 <TableColumn fx:id="colunaIdDataVenda" prefWidth="112.0" text="Data da Venda" />

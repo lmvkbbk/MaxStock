@@ -458,6 +458,7 @@ public class TelaAdministradorController {
     @FXML
     void acaoVoltarCadastroCliente(ActionEvent event){
         CenaCadastroCliente.setVisible(false);
+        limparCamposCadastroCliente();
     }
 
     @FXML
@@ -672,6 +673,7 @@ public class TelaAdministradorController {
     @FXML
     void acaoVoltarCadastroProduto(ActionEvent event){
         CenaCadastrarProduto.setVisible(false);
+        limparCamposCadastroProduto();
     }
 
     @FXML
@@ -940,11 +942,8 @@ public class TelaAdministradorController {
 
     @FXML
     void acaoCadastroVenda(ActionEvent event) {
-        LocalDate dataVendaValue = DataVenda.getValue();
-        Date dataVenda;
-        if (dataVendaValue != null) {
-            dataVenda = java.sql.Date.valueOf(dataVendaValue);
-        } else {
+        String dataVenda = String.valueOf(DataVenda.getValue());
+        if (dataVenda == null || dataVenda.isBlank() ) {
             String detalhes = """
                     Esta informação é necessária para concluir o cadastro corretamente.
                     
@@ -955,7 +954,6 @@ public class TelaAdministradorController {
                     "Por favor, insira uma data de nascimento antes de prosseguir.", detalhes);
             return;
         }
-        Date finalDataVenda = dataVenda;
 
         String formaDePagamento;
         if (TiposDePagamento.getValue() != null) {
@@ -972,19 +970,19 @@ public class TelaAdministradorController {
         } else
             nomeCliente = nomeClienteVenda.getText();
 
-        setIdVenda(IdVenda(finalDataVenda, formaDePagamento, nomeCliente));
+        setIdVenda(IdVenda(dataVenda, formaDePagamento, nomeCliente));
         if (idVenda > 0) {
-            TelaCadastroListaVendas.setVisible(true);
+            chamarTelaCadastroListaVendas();
             carregarDadosProdutoVenda();
         }
     }
 
-    public int IdVenda(Date dataVenda, String Pagamento, String nomeCliente){
+    public int IdVenda(String dataVenda, String Pagamento, String nomeCliente){
         String sqlVenda = "INSERT INTO Venda (dataVenda, metodoPagamento, totalVenda, clienteNome) VALUES (?, ?, 0, ?)";
         try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
              PreparedStatement stmtVenda = conexao.prepareStatement(sqlVenda, Statement.RETURN_GENERATED_KEYS)) {
 
-            stmtVenda.setDate(1, Date.valueOf(dataVenda.toLocalDate()));
+            stmtVenda.setString(1, dataVenda);
             stmtVenda.setString(2, Pagamento);
             stmtVenda.setString(3, nomeCliente);
             stmtVenda.executeUpdate();
@@ -1074,11 +1072,8 @@ public class TelaAdministradorController {
 
     @FXML
     void acaoUpdateVenda(ActionEvent event){
-        LocalDate dataVendaValue = DataVendaAlteracao.getValue();
-        Date dataVenda;
-        if (dataVendaValue != null) {
-            dataVenda = java.sql.Date.valueOf(dataVendaValue);
-        } else {
+        String dataVenda = String.valueOf( DataVendaAlteracao.getValue());
+        if (dataVenda == null || dataVenda.isBlank() ) {
             String detalhes = """
                     Esta informação é necessária para concluir o cadastro corretamente.
                     
@@ -1086,15 +1081,13 @@ public class TelaAdministradorController {
                     -Lembre-se de usar o formato dd/mm/aaaa caso tenha digitado a Data""";
 
             alerta.warning("Atenção", "Data da Venda Não Selecionada ou Não Inserida",
-                    "Por favor, insira uma data antes de prosseguir.", detalhes);
+                    "Por favor, insira uma data de nascimento antes de prosseguir.", detalhes);
             return;
         }
-        Date finalDataVenda = dataVenda;
 
         String formaDePagamento;
         if (PagamentoAlteracao.getValue() != null) {
             formaDePagamento = PagamentoAlteracao.getValue();
-
         } else {
             alerta.warning("Atenção", "Tipo de Pagamento Não Selecionado",
                     "Por favor, escolha o tipo de pagamento para concluir a compra.", null);
@@ -1107,7 +1100,7 @@ public class TelaAdministradorController {
         } else
             nomeCliente = alteracaoNomeClienteVenda.getText();
 
-        IdVendaUpdate(finalDataVenda, formaDePagamento, nomeCliente);
+        IdVendaUpdate(dataVenda, formaDePagamento, nomeCliente);
         TelaAlteracaoVenda.setVisible(false);
         carregarBancoDadosVendas();
         alerta.information("Atualização Venda", "Venda Atualizada Com Sucesso", null, null);
@@ -1115,11 +1108,8 @@ public class TelaAdministradorController {
 
     @FXML
     void acaoUpdateVendaComLista(ActionEvent event){
-        LocalDate dataVendaValue = DataVendaAlteracao.getValue();
-        Date dataVenda ;
-        if (dataVendaValue != null) {
-            dataVenda = java.sql.Date.valueOf(dataVendaValue);
-        } else {
+        String dataVenda = String.valueOf( DataVendaAlteracao.getValue());
+        if (dataVenda == null || dataVenda.isBlank() ) {
             String detalhes = """
                     Esta informação é necessária para concluir o cadastro corretamente.
                     
@@ -1127,10 +1117,9 @@ public class TelaAdministradorController {
                     -Lembre-se de usar o formato dd/mm/aaaa caso tenha digitado a Data""";
 
             alerta.warning("Atenção", "Data da Venda Não Selecionada ou Não Inserida",
-                    "Por favor, insira uma data antes de prosseguir.", detalhes);
+                    "Por favor, insira uma data de nascimento antes de prosseguir.", detalhes);
             return;
         }
-        Date finalDataVenda = dataVenda;
 
         String formaDePagamento;
         if (PagamentoAlteracao.getValue() != null) {
@@ -1148,8 +1137,8 @@ public class TelaAdministradorController {
             nomeCliente = alteracaoNomeClienteVenda.getText();
 
         setAtualizacao(true);
-        setIdVenda(IdVendaUpdate(finalDataVenda, formaDePagamento, nomeCliente));
-        TelaCadastroListaVendas.setVisible(true);
+        setIdVenda(IdVendaUpdate(dataVenda, formaDePagamento, nomeCliente));
+        chamarTelaCadastroListaVendas();
         carregarDadosProdutoVenda();
         mostrarItensDaVendaAtual(getIdVenda());
         double total = calcularPrecoTotal(getIdVenda());
@@ -1157,13 +1146,13 @@ public class TelaAdministradorController {
 
     }
 
-    public int IdVendaUpdate(Date novaDataVenda, String novoPagamento, String novoNomeCliente) {
+    public int IdVendaUpdate(String novaDataVenda, String novoPagamento, String novoNomeCliente) {
         String sqlUpdate = "UPDATE Venda SET dataVenda = ?, metodoPagamento = ?, clienteNome = ? WHERE idVenda = ?";
 
         try (Connection conexao = DriverManager.getConnection(DATABASE_URL);
              PreparedStatement stmtUpdate = conexao.prepareStatement(sqlUpdate)) {
 
-            stmtUpdate.setString(1, String.valueOf(novaDataVenda));
+            stmtUpdate.setString(1, novaDataVenda);
             stmtUpdate.setString(2, novoPagamento);
             stmtUpdate.setString(3, novoNomeCliente);
             stmtUpdate.setInt(4, getIdVenda());
@@ -1185,7 +1174,6 @@ public class TelaAdministradorController {
         }
         return -1;
     }
-
 
     double calcularPrecoTotal(int idVenda) {
         String sql = "SELECT SUM(iv.quantidade * iv.precoUnitario) AS total " +
@@ -1414,6 +1402,11 @@ public class TelaAdministradorController {
             alerta.error("Erro ao Finalizar Venda", "Falha ao Finalizar a Venda", "Ocorreu um erro ao tentar finalizar a venda. Verifique os detalhes e tente novamente.", detalhes);
         }
         quantidadeProdutoVenda.setText(null);
+    }
+
+    public void chamarTelaCadastroListaVendas(){
+        TelaCadastroListaVendas.setVisible(true);
+        precoTotalItemVenda.setText("0.00");
     }
 
     //Metodos Tela Relatorio
