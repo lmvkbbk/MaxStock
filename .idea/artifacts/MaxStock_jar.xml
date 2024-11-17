@@ -4,16 +4,23 @@
     <root id="archive" name="MaxStock.jar">
       <element id="module-output" name="MaxStock" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx-swt.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx.base.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx.controls.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx.swing.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx.fxml.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx.base.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx.graphics.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx.media.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx.swing.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx.web.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Downloads/sqlite-jdbc-3.46.1.2.jar" path-in-jar="/" />
-      <element id="library" level="project" name="javafx-swt" />
-      <element id="library" level="project" name="sqlite-jdbc-3.46.1.2" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx-swt.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx.base.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx.controls.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx.fxml.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx.graphics.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx.media.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx.web.jar" />
+      <element id="file-copy" path="$PROJECT_DIR$/../../../../javafx-sdk-23.0.1/lib/javafx.swing.jar" />
+      <element id="file-copy" path="$USER_HOME$/Downloads/sqlite-jdbc-3.46.1.2.jar" />
     </root>
   </artifact>
 </component>

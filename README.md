@@ -35,5 +35,4 @@
 - **Integração com banco de dados SQLite**
 
 ## 📦 Instalação
-O sistema pode ser baixado como um executável para Windows, gerado com a ferramenta jpackage
-ou o executavel pode ser gerado pelo programa [Launch4j](https://launch4j.sourceforge.net/)
+O sistema pode ser baixado como um executável para Windows, gerado com a ferramenta jpackage.
